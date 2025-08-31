@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -18,23 +17,43 @@ export default function BlogDetail() {
     fetchBlog();
   }, [id]);
 
-  if (!blog) return <p className="p-6">Loading...</p>;
+  if (!blog) return <p className="p-6 text-center">Loading...</p>;
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="bg-white shadow-md rounded-xl p-6">
-        <h2 className="text-3xl font-bold mb-3">{blog.title}</h2>
-        <p className="text-gray-500 mb-4">
-          By {blog.author.email} • {new Date(blog.createdAt).toLocaleString()}
-        </p>
-        <p className="mb-6">{blog.content}</p>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="bg-white shadow-md rounded-xl p-4 sm:p-6 md:p-8 max-w-3xl mx-auto">
+      
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 break-words">
+          {blog.title}
+        </h2>
 
-        <h3 className="font-semibold text-lg mb-2">Comments</h3>
-        {blog.comments.map((c) => (
-          <p key={c._id} className="mb-1">
-            <span className="font-semibold">{c.user.email}:</span> {c.text}
-          </p>
-        ))}
+     
+        <p className="text-xs sm:text-sm md:text-base text-gray-500 mb-4">
+          By <span className="font-semibold">{blog.author.email}</span> •{" "}
+          {new Date(blog.createdAt).toLocaleString()}
+        </p>
+
+      
+        <p className="mb-6 text-sm sm:text-base leading-relaxed break-words">
+          {blog.content}
+        </p>
+
+        
+        <h3 className="font-semibold text-lg sm:text-xl mb-2">Comments</h3>
+        <div className="space-y-2">
+          {blog.comments.length > 0 ? (
+            blog.comments.map((c) => (
+              <p
+                key={c._id}
+                className="text-xs sm:text-sm md:text-base break-words"
+              >
+                <span className="font-semibold">{c.user.email}:</span> {c.text}
+              </p>
+            ))
+          ) : (
+            <p className="text-gray-500 text-sm">No comments yet.</p>
+          )}
+        </div>
       </div>
     </div>
   );
