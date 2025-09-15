@@ -10,6 +10,7 @@ export const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const frontendBuildPath = path.join(__dirname, "..", "frontend", "build");
 app.use(express.json());
 
 app.use(
@@ -23,10 +24,10 @@ app.get("/api/health", (_, res) => res.json({ ok: true}));
 app.use('/uploads', express.static('uploads'));
 app.use("/api", router);
 app.use("/api/blogs", blogRoutes);
-app.use(express.static(path.join(__dirname, "frontend", "build")));
+app.use(express.static(frontendBuildPath));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+    res.sendFile(path.join(frontendBuildPath, "index.html"));
 });
 
 
