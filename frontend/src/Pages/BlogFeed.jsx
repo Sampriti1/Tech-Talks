@@ -7,9 +7,9 @@ export default function BlogFeed() {
   const [content, setContent] = useState("");
   const [commentTexts, setCommentTexts] = useState([]);
   const token = localStorage.getItem("token");
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const fetchBlogs = async () => {
-    const res = await fetch("http://localhost:5000/api/blogs", {
+    const res = await fetch(`${apiUrl}/blogs`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();

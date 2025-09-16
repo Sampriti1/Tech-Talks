@@ -7,7 +7,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
-
+const apiUrl = process.env.REACT_APP_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -17,7 +17,7 @@ export default function Signup() {
       formData.append("password", password);
       if (file) formData.append("profileImage", file);
 
-      const response = await fetch("http://localhost:5000/api/signup", {
+      const response = await fetch(`${apiUrl}signup`, {
         method: "POST",
         body: formData,
       });

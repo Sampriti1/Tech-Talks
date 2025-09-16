@@ -7,7 +7,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
-
+const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -25,7 +25,7 @@ export default function Profile() {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/blogs/user/${user._id}`, 
+          `${apiUrl}/blogs/user/${user._id}`, 
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

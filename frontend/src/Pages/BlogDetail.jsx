@@ -5,10 +5,10 @@ export default function BlogDetail() {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const token = localStorage.getItem("token");
-
+const apiUrl = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchBlog = async () => {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      const res = await fetch(`${apiUrl}/blogs/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
