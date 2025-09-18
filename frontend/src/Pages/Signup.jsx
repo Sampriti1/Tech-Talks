@@ -17,7 +17,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
       formData.append("password", password);
       if (file) formData.append("profileImage", file);
 
-      const response = await fetch(`${apiUrl}/signup`, {
+      const response = await fetch(`${apiUrl}signup`, {
         method: "POST",
         body: formData,
       });
