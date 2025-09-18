@@ -15,7 +15,7 @@ app.use(express.json());
 //console.log("CLIENT_ORIGIN:", process.env.CLIENT_ORIGIN);
 app.use(
     cors({
-        origin: process.env.CLIENT_ORIGIN,
+        origin: "*",
         credentials: true
     })
 )
