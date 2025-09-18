@@ -5,7 +5,7 @@ export default function BlogDetail() {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const token = localStorage.getItem("token");
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl =import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchBlog = async () => {
       const res = await fetch(`${apiUrl}/blogs/${id}`, {

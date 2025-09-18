@@ -7,7 +7,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
