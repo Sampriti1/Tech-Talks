@@ -14,11 +14,22 @@ export const app = express();
 app.use(express.json());
 //console.log("CLIENT_ORIGIN:", process.env.CLIENT_ORIGIN);
 app.use(
-    cors({
-        origin: "*",
-        credentials: true
-    })
-)
+  cors({
+    origin: (origin, callback) => {
+      if (
+        !origin ||                                // allow server-to-server or local tools
+        origin.endsWith(".vercel.app") ||         // allow all vercel subdomains
+        origin === "http://localhost:5173"        // allow local dev
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 
 
 app.get("/api/health", (_, res) => res.json({ ok: true}));
