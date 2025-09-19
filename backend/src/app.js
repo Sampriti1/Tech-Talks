@@ -31,8 +31,11 @@ app.use(
 );
 
 
+app.get("/api/health", (req, res) => {
+  res.json({ ok: true, message: "Backend is working fine 🚀" });
+});
 
-app.get("/api/health", (_, res) => res.json({ ok: true}));
+
 app.use('/uploads', express.static('uploads'));
 app.use("/api", router);
 app.use("/api/blogs", blogRoutes);
