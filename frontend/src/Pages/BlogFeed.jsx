@@ -9,7 +9,7 @@ export default function BlogFeed() {
   const token = localStorage.getItem("token");
 const apiUrl = import.meta.env.VITE_API_URL;
   const fetchBlogs = async () => {
-    const res = await fetch(`${apiUrl}/blogs`, {
+    const res = await fetch(`${apiUrl}blogs`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
