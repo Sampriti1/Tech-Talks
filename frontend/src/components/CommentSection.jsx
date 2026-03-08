@@ -16,7 +16,7 @@ export default function CommentSection() {
       <h3 className="text-lg font-semibold mb-3">Comments</h3>
       <div className="mb-4">
         <textarea
-          className="w-full border p-2 rounded-md"
+  className="w-full bg-gray-800 text-white border border-gray-600 p-2 rounded-md placeholder-gray-400"
           rows="2"
           placeholder="Write a comment..."
           value={newComment}
@@ -32,7 +32,7 @@ export default function CommentSection() {
 
       <ul className="space-y-2">
         {comments.map((c, idx) => (
-          <li key={idx} className="bg-gray-100 p-2 rounded-md">{c}</li>
+          <li key={idx} className="bg-gray-100 text-white p-2 rounded-md">{c}</li>
         ))}
       </ul>
     </div>

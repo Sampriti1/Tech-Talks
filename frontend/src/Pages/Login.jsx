@@ -19,13 +19,25 @@ export default function Login() {
       });
 
       const data = await response.json();
-      if (response.ok) {
-        console.log(data);
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        alert("Login successful");
-        navigate("/app/home");
-      } else {
+     if (response.ok) {
+  console.log(data);
+
+  localStorage.setItem("token", data.token);
+
+  localStorage.setItem(
+    "user",
+    JSON.stringify({
+      _id: data.user.id,
+      name: data.user.name,
+      email: data.user.email,
+      profileImage: data.user.profileImage,
+    })
+  );
+
+  alert("Login successful");
+  navigate("/app/home");
+}
+      else {
         alert(data.message || "Login failed");
       }
     } catch (err) {
